@@ -1,6 +1,6 @@
 This project is hosted by Vercel, and the source code is available on GitHub:
 - GitHub Repository: https://github.com/xRon0s/next-blog-app
-- Vercel Deployment: https://next-blog-oql8ca38x-lilias-projects-850e1369.vercel.app
+- Vercel Deployment: https://colection-app-konon.vercel.app/
 
 # about
 Next.js 13.4を使用して構築した、コレクション管理のためのウェブアプリケーションです。
