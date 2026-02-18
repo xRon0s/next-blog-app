@@ -4,12 +4,16 @@ import type { CollectionItem } from "@/app/_types/CollectionItem";
 import CollectionItemCard from "@/app/_components/CollectionItemCard";
 import SearchBar from "@/app/_components/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faBoxOpen, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "@/app/_hooks/useAuth";
+import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 const Page: React.FC = () => {
   const [items, setItems] = useState<CollectionItem[] | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+  const { session } = useAuth();
 
   const handleSearch = useCallback(
     async (params: { search: string; tagIds: string[]; status: string }) => {
@@ -46,9 +50,23 @@ const Page: React.FC = () => {
 
   return (
     <main>
-      <div className="mb-4 text-2xl font-bold">
-        <FontAwesomeIcon icon={faBoxOpen} className="mr-2" />
-        コレクション
+      <div className="mb-4 flex items-center justify-between">
+        <div className="text-2xl font-bold">
+          <FontAwesomeIcon icon={faBoxOpen} className="mr-2" />
+          コレクション
+        </div>
+        {session && (
+          <Link
+            href="/admin/collections/new"
+            className={twMerge(
+              "rounded-md px-4 py-2 text-sm font-bold",
+              "bg-indigo-500 text-white hover:bg-indigo-600"
+            )}
+          >
+            <FontAwesomeIcon icon={faPlus} className="mr-1" />
+            追加
+          </Link>
+        )}
       </div>
 
       <SearchBar onSearch={handleSearch} />
