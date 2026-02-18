@@ -6,7 +6,6 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { twMerge } from "tailwind-merge";
 import { useAuth } from "@/app/_hooks/useAuth";
 import StarRating from "@/app/_components/StarRating";
-import ImageUploader from "@/app/_components/ImageUploader";
 import type { CollectionItem, CollectionItemStatus } from "@/app/_types/CollectionItem";
 import { statusLabels } from "@/app/_types/CollectionItem";
 
@@ -226,7 +225,20 @@ const Page: React.FC = () => {
           />
         </div>
 
-        <ImageUploader imageURL={imageURL} onImageChange={setImageURL} />
+        <div className="space-y-1">
+          <label htmlFor="imageURL" className="block font-bold">
+            画像URL
+          </label>
+          <input
+            type="url"
+            id="imageURL"
+            className="w-full rounded-md border-2 px-2 py-1"
+            value={imageURL}
+            onChange={(e) => setImageURL(e.target.value)}
+            placeholder="画像のURLを入力"
+            required
+          />
+        </div>
 
         <div className="space-y-1">
           <div className="font-bold">評価</div>
