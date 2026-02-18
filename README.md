@@ -1,38 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project is hosted by Vercel, and the source code is available on GitHub:
+- GitHub Repository: https://github.com/xRon0s/next-blog-app
+- Vercel Deployment: https://next-blog-oql8ca38x-lilias-projects-850e1369.vercel.app
 
-## Getting Started
+# about
+Next.js 13.4を使用して構築した、コレクション管理のためのウェブアプリケーションです。
+権限を持ったアカウントでログインすることで、コレクション及びタグの作成、編集、削除が可能となります。
 
-First, run the development server:
+# features
+- コレクションアイテムの作成、編集、削除
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Collection Item Management](Readme_img/スクリーンショット%202026-02-18%20173632.png)
+アイテムの新規追加画面で、アイテム名、説明、画像のURL、評価、ステータス、タグを入力および選択することでコレクション一覧へのアイテムの追加が可能となります。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+↘実際に追加した画面
+![Collection Item Added](Readme_img/スクリーンショット%202026-02-18%20173642.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+また、アイテムの追加後は管理画面から編集、または削除が可能です。
+![Collection Item Edit/Delete](Readme_img/スクリーンショット%202026-02-18%20174830.png)
+- タグの作成、編集、削除
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![Tag Management](Readme_img/スクリーンショット%202026-02-18%20173709.png)
+タグの新規追加画面で、タグ名とタグの色を入力・選択することでタグの追加が可能となります。
+また、タグの追加後は管理画面から編集、または削除が可能です。
+![Tag Edit/Delete](Readme_img/スクリーンショット%202026-02-18%20173704.png)
+- アイテムの検索機能（キーワード、タグ、ステータスによるフィルタリング）
+![Search Functionality](Readme_img/スクリーンショット%202026-02-18%20173730.png)
+検索バーにアイテム名、説明、タグ名のキーワードを入力することで追加したアイテムの絞り込みが可能となります。
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-test
+# period
+開発期間: 2026年1月下旬～2026年2月中旬(15時間程度)
