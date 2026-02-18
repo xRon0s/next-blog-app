@@ -61,7 +61,6 @@ const Page: React.FC = () => {
           "file:cursor-pointer",
         )}
       />
-      <div className="text-sm break-all">coverImageKey : {coverImageKey}</div>
       <div className="text-sm break-all">coverImageUrl : {coverImageUrl}</div>
     </div>
   );
