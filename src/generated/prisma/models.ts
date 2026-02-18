@@ -11,4 +11,7 @@
 export type * from './models/Post'
 export type * from './models/Category'
 export type * from './models/PostCategory'
+export type * from './models/CollectionItem'
+export type * from './models/Tag'
+export type * from './models/ItemTag'
 export type * from './commonInputTypes'

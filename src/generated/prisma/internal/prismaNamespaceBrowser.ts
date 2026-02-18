@@ -53,7 +53,10 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Post: 'Post',
   Category: 'Category',
-  PostCategory: 'PostCategory'
+  PostCategory: 'PostCategory',
+  CollectionItem: 'CollectionItem',
+  Tag: 'Tag',
+  ItemTag: 'ItemTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -103,6 +106,42 @@ export const PostCategoryScalarFieldEnum = {
 } as const
 
 export type PostCategoryScalarFieldEnum = (typeof PostCategoryScalarFieldEnum)[keyof typeof PostCategoryScalarFieldEnum]
+
+
+export const CollectionItemScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  imageURL: 'imageURL',
+  rating: 'rating',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CollectionItemScalarFieldEnum = (typeof CollectionItemScalarFieldEnum)[keyof typeof CollectionItemScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  color: 'color',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const ItemTagScalarFieldEnum = {
+  id: 'id',
+  collectionItemId: 'collectionItemId',
+  tagId: 'tagId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ItemTagScalarFieldEnum = (typeof ItemTagScalarFieldEnum)[keyof typeof ItemTagScalarFieldEnum]
 
 
 export const SortOrder = {

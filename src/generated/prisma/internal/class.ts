@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "// このファイルを更新したら...\n// 0. `npm run dev` や `npx prisma studio` を停止\n// 1. dev.db を削除\n// 2. npx prisma db push\n// 3. npx prisma generate\n// 4. npx prisma db seed\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// 投稿記事テーブル\nmodel Post {\n  id            String         @id @default(uuid())\n  title         String\n  content       String\n  coverImageURL String\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n  categories    PostCategory[]\n}\n\n// カテゴリテーブル\nmodel Category {\n  id        String         @id @default(uuid())\n  name      String         @unique\n  createdAt DateTime       @default(now())\n  updatedAt DateTime       @updatedAt\n  posts     PostCategory[]\n}\n\n// 投稿記事とカテゴリを紐づける中間テーブル\nmodel PostCategory {\n  id         String   @id @default(uuid())\n  postId     String\n  categoryId String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)\n  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)\n}\n",
+  "inlineSchema": "// このファイルを更新したら...\n// 0. `npm run dev` や `npx prisma studio` を停止\n// 1. dev.db を削除\n// 2. npx prisma db push\n// 3. npx prisma generate\n// 4. npx prisma db seed\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// 投稿記事テーブル\nmodel Post {\n  id            String         @id @default(uuid())\n  title         String\n  content       String\n  coverImageURL String\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n  categories    PostCategory[]\n}\n\n// カテゴリテーブル\nmodel Category {\n  id        String         @id @default(uuid())\n  name      String         @unique\n  createdAt DateTime       @default(now())\n  updatedAt DateTime       @updatedAt\n  posts     PostCategory[]\n}\n\n// 投稿記事とカテゴリを紐づける中間テーブル\nmodel PostCategory {\n  id         String   @id @default(uuid())\n  postId     String\n  categoryId String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)\n  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)\n}\n\n// ================================\n// コレクション管理機能\n// ================================\n\n// コレクションアイテムテーブル\nmodel CollectionItem {\n  id          String    @id @default(uuid())\n  name        String\n  description String\n  imageURL    String\n  rating      Int       @default(0) // 0-5の評価\n  status      String    @default(\"owned\") // owned, wishlist, sold\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n  tags        ItemTag[]\n}\n\n// タグテーブル\nmodel Tag {\n  id        String    @id @default(uuid())\n  name      String    @unique\n  color     String    @default(\"#6366f1\") // タグの表示色\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  items     ItemTag[]\n}\n\n// コレクションアイテムとタグを紐づける中間テーブル\nmodel ItemTag {\n  id               String         @id @default(uuid())\n  collectionItemId String\n  tagId            String\n  createdAt        DateTime       @default(now())\n  updatedAt        DateTime       @updatedAt\n  tag              Tag            @relation(fields: [tagId], references: [id], onDelete: Cascade)\n  collectionItem   CollectionItem @relation(fields: [collectionItemId], references: [id], onDelete: Cascade)\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"coverImageURL\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"categories\",\"kind\":\"object\",\"type\":\"PostCategory\",\"relationName\":\"PostToPostCategory\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"PostCategory\",\"relationName\":\"CategoryToPostCategory\"}],\"dbName\":null},\"PostCategory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"postId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToPostCategory\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToPostCategory\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"coverImageURL\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"categories\",\"kind\":\"object\",\"type\":\"PostCategory\",\"relationName\":\"PostToPostCategory\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"PostCategory\",\"relationName\":\"CategoryToPostCategory\"}],\"dbName\":null},\"PostCategory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"postId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToPostCategory\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToPostCategory\"}],\"dbName\":null},\"CollectionItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imageURL\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rating\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"tags\",\"kind\":\"object\",\"type\":\"ItemTag\",\"relationName\":\"CollectionItemToItemTag\"}],\"dbName\":null},\"Tag\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"color\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"ItemTag\",\"relationName\":\"ItemTagToTag\"}],\"dbName\":null},\"ItemTag\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"collectionItemId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tagId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"tag\",\"kind\":\"object\",\"type\":\"Tag\",\"relationName\":\"ItemTagToTag\"},{\"name\":\"collectionItem\",\"kind\":\"object\",\"type\":\"CollectionItem\",\"relationName\":\"CollectionItemToItemTag\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -203,6 +203,36 @@ export interface PrismaClient<
     * ```
     */
   get postCategory(): Prisma.PostCategoryDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.collectionItem`: Exposes CRUD operations for the **CollectionItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CollectionItems
+    * const collectionItems = await prisma.collectionItem.findMany()
+    * ```
+    */
+  get collectionItem(): Prisma.CollectionItemDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.tag`: Exposes CRUD operations for the **Tag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tags
+    * const tags = await prisma.tag.findMany()
+    * ```
+    */
+  get tag(): Prisma.TagDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.itemTag`: Exposes CRUD operations for the **ItemTag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ItemTags
+    * const itemTags = await prisma.itemTag.findMany()
+    * ```
+    */
+  get itemTag(): Prisma.ItemTagDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

@@ -44,3 +44,41 @@ model PostCategory {
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
+
+// ================================
+// コレクション管理機能
+// ================================
+
+// コレクションアイテムテーブル
+model CollectionItem {
+  id           String   @id @default(uuid())
+  name         String
+  description  String
+  imageURL     String
+  rating       Int      @default(0)  // 0-5の評価
+  status       String   @default("owned") // owned, wishlist, sold
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  tags         ItemTag[]
+}
+
+// タグテーブル
+model Tag {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  color      String   @default("#6366f1") // タグの表示色
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  items      ItemTag[]
+}
+
+// コレクションアイテムとタグを紐づける中間テーブル
+model ItemTag {
+  id               String @id @default(uuid())
+  collectionItemId String
+  tagId            String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  tag              Tag            @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  collectionItem   CollectionItem @relation(fields: [collectionItemId], references: [id], onDelete: Cascade)
+}

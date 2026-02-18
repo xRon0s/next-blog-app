@@ -32,3 +32,18 @@ export type Category = Prisma.CategoryModel
  * 
  */
 export type PostCategory = Prisma.PostCategoryModel
+/**
+ * Model CollectionItem
+ * 
+ */
+export type CollectionItem = Prisma.CollectionItemModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model ItemTag
+ * 
+ */
+export type ItemTag = Prisma.ItemTagModel
