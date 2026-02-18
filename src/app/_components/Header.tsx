@@ -30,18 +30,19 @@ const Header: React.FC = () => {
           <div>
             <Link href="/">
               <FontAwesomeIcon icon={faFish} className="mr-1" />
-              MyBlogApp
+              MyCollection
             </Link>
           </div>
           <div className="flex gap-x-6">
-            <Link href="/collections">Collection</Link>
             {!isLoading &&
               (session ? (
-                <button onClick={logout}>Logout</button>
+                <>
+                  <Link href="/admin">管理</Link>
+                  <button onClick={logout}>Logout</button>
+                </>
               ) : (
                 <Link href="/login">Login</Link>
               ))}
-            <Link href="/about">About</Link>
           </div>
         </div>
       </div>

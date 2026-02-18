@@ -3,8 +3,8 @@ import "./globals.css";
 import Header from "@/app/_components/Header";
 
 export const metadata: Metadata = {
-  title: "NextBlogApp",
-  description: "Built to learn Next.js and modern web development.",
+  title: "MyCollection",
+  description: "コレクション管理アプリ",
 };
 
 type Props = {
