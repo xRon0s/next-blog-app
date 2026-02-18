@@ -19,7 +19,7 @@ model Post {
   id             String @id @default(uuid())
   title          String
   content        String
-  coverImageKey  String
+  coverImageURL  String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   categories     PostCategory[]

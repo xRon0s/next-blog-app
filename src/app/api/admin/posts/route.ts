@@ -13,9 +13,10 @@ type RequestBody = {
 export const POST = async (req: NextRequest) => {
   // JWTトークンの検証・認証 (失敗したら 401 Unauthorized を返す)
   const token = req.headers.get("Authorization") ?? "";
-  const { data, error } = await supabase.auth.getUser(token);
-  if (error)
+  const { error } = await supabase.auth.getUser(token);
+  if (error) {
     return NextResponse.json({ error: error.message }, { status: 401 });
+  }
 
   try {
     const requestBody: RequestBody = await req.json();

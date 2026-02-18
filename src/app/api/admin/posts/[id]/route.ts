@@ -2,6 +2,9 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 import type { Post } from "@/generated/prisma/client";
 
+export const revalidate = 0; // ◀ サーバサイドのキャッシュを無効化する設定
+export const dynamic = "force-dynamic"; // ◀ ISR (Incremental Static Regeneration) を無効化する設定。これもサーバサイドのキャッシュを無効化するための設定であることに注意。Next.js 13.4以降では、revalidate=0 と dynamic="force-dynamic" の両方を指定することで、完全にサーバサイドのキャッシュを無効化できる。
+
 type RouteParams = {
   params: Promise<{
     id: string;

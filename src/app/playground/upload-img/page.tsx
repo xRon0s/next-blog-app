@@ -15,11 +15,9 @@ const calculateMD5Hash = async (file: File): Promise<string> => {
 const Page: React.FC = () => {
   const bucketName = "cover-image";
   const [coverImageUrl, setCoverImageUrl] = useState<string | undefined>();
-  const [coverImageKey, setCoverImageKey] = useState<string | undefined>();
   const { session } = useAuth();
 
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    setCoverImageKey(undefined); // 画像のキーをリセット
     setCoverImageUrl(undefined); // 画像のURLをリセット
 
     // 画像が選択されていない場合は戻る
@@ -40,8 +38,6 @@ const Page: React.FC = () => {
       window.alert(`アップロードに失敗 ${error.message}`);
       return;
     }
-    // 画像のキー (実質的にバケット内のパス) を取得
-    setCoverImageKey(data.path);
     const publicUrlResult = supabase.storage
       .from(bucketName)
       .getPublicUrl(data.path);
