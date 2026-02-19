@@ -1,12 +1,12 @@
-This project is hosted by Vercel, and the source code is available on GitHub:
+## This project is hosted by Vercel, and the source code is available on GitHub:
 - GitHub Repository: https://github.com/xRon0s/next-blog-app
 - Vercel Deployment: https://colection-app-konon.vercel.app/
-
-# about
+- Authentication: https://colection-app-konon.vercel.app/login
+## about
 Next.js 13.4を使用して構築した、コレクション管理のためのウェブアプリケーションです。
 権限を持ったアカウントでログインすることで、コレクション及びタグの作成、編集、削除が可能となります。
 
-# features
+## features
 - コレクションアイテムの作成、編集、削除
 
 ![Collection Item Management](Readme_img/スクリーンショット%202026-02-18%20173632.png)
@@ -27,5 +27,5 @@ Next.js 13.4を使用して構築した、コレクション管理のための�
 ![Search Functionality](Readme_img/スクリーンショット%202026-02-18%20173730.png)
 検索バーにアイテム名、説明、タグ名のキーワードを入力することで追加したアイテムの絞り込みが可能となります。
 
-# period
+## period
 開発期間: 2026年1月下旬～2026年2月中旬(15時間程度)
